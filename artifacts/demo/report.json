@@ -1,0 +1,21 @@
+{
+  "summary": {
+    "folds": 5,
+    "avg_auc": 0.536,
+    "avg_brier": 0.249,
+    "avg_log_loss": 0.691,
+    "total_trades": 137,
+    "avg_net_ev_pct": -0.031,
+    "threshold": 0.55,
+    "round_trip_cost_pct": 0.14,
+    "paper_trading_only": true
+  },
+  "folds": [
+    {"fold": 1, "train_rows": 672, "test_rows": 336, "auc": 0.529, "brier": 0.250, "log_loss": 0.693, "trades": 23, "net_ev_pct": -0.061},
+    {"fold": 2, "train_rows": 1008, "test_rows": 336, "auc": 0.542, "brier": 0.248, "log_loss": 0.689, "trades": 31, "net_ev_pct": 0.024},
+    {"fold": 3, "train_rows": 1344, "test_rows": 336, "auc": 0.551, "brier": 0.247, "log_loss": 0.687, "trades": 36, "net_ev_pct": 0.018},
+    {"fold": 4, "train_rows": 1680, "test_rows": 336, "auc": 0.521, "brier": 0.251, "log_loss": 0.695, "trades": 18, "net_ev_pct": -0.086},
+    {"fold": 5, "train_rows": 2016, "test_rows": 336, "auc": 0.537, "brier": 0.249, "log_loss": 0.691, "trades": 29, "net_ev_pct": -0.050}
+  ],
+  "notice": "Bundled preview fixture. Run the demo pipeline to regenerate all values from deterministic synthetic data."
+}

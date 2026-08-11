@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crypto ML Research Engine</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <header>
+      <div><span class="eyebrow">SYNTHETIC DATA · PAPER TRADING</span>
+        <h1>Market Research<br><em>without the hype.</em></h1>
+        <p>Leakage-aware validation, calibrated probabilities and cost-adjusted evaluation in one reproducible research workflow.</p>
+      </div>
+      <div class="status"><span></span> Research engine healthy</div>
+    </header>
+    {% set s = report.summary %}
+    <section class="metrics">
+      <article><label>Walk-forward AUC</label><strong>{{ '%.3f'|format(s.avg_auc or 0) }}</strong><small>Across {{ s.folds }} temporal folds</small></article>
+      <article><label>Brier score</label><strong>{{ '%.3f'|format(s.avg_brier or 0) }}</strong><small>Probability calibration</small></article>
+      <article><label>Paper signals</label><strong>{{ s.total_trades }}</strong><small>Threshold {{ s.threshold }}</small></article>
+      <article><label>Net EV / signal</label><strong>{{ '%+.3f'|format(s.avg_net_ev_pct or 0) }}%</strong><small>After {{ s.round_trip_cost_pct }}% cost</small></article>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><span class="eyebrow">TEMPORAL VALIDATION</span><h2>Walk-forward folds</h2></div><span class="badge">No shuffled CV</span></div>
+      <div class="folds">
+        {% for f in report.folds %}
+        <div class="fold"><span>Fold {{ f.fold }}</span><div class="bar"><i style="width: {{ (f.auc * 100)|round }}%"></i></div><b>{{ '%.3f'|format(f.auc) }}</b><small>{{ f.trades }} signals</small></div>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="grid">
+      <article class="note"><span class="eyebrow">DESIGN PRINCIPLE</span><h3>Evidence before execution</h3><p>The public demo cannot place orders and contains no exchange credentials. It demonstrates the research architecture using deterministic synthetic OHLCV data.</p></article>
+      <article class="note"><span class="eyebrow">RISK CONTROL</span><h3>Costs are first-class</h3><p>Every selected paper signal is evaluated after a configurable round-trip cost. Same-candle SL/TP ambiguity is resolved conservatively.</p></article>
+    </section>
+    <footer>Educational research software · Not financial advice · No live trading</footer>
+  </main>
+</body>
+</html>
